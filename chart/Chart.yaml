@@ -1,0 +1,5 @@
+apiVersion: v2
+name: m1-tiny
+description: Synthetic M1 e2e fixture
+version: 0.1.0
+appVersion: "1.0"
