@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-fast-build
+  labels:
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/component: fast-build
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: {{ .Release.Name }}
+      app.kubernetes.io/component: fast-build
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/instance: {{ .Release.Name }}
+        app.kubernetes.io/component: fast-build
+    spec:
+      containers:
+        - name: fast-build
+          # Pinned at deploy time from builds.json by service name (fast-build); the tag is never used.
+          image: fast-build:fixture
+          command: ["node", "app.js"]
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            tcpSocket: {port: 8080}
