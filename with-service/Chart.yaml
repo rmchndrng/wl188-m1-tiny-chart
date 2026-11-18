@@ -1,0 +1,5 @@
+apiVersion: v2
+name: m1-tiny-with-service
+description: Synthetic M1 e2e fixture (idle external image + the built fast-build service)
+version: 0.1.0
+appVersion: "1.0"
